@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".register">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/received_461455371023210"
+        app:srcCompat="@drawable/received_461455371023210" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="132dp"
+        android:layout_height="143dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/logofinal" />
+
+
+    <EditText
+        android:id="@+id/editTextfirstname"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="164dp"
+        android:ems="10"
+        android:hint="Firstname"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/editTextlastname"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:ems="10"
+        android:hint="Lastname"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="243dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="#000000"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="181dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/editTextCPassword"
+        android:layout_width="241dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="113dp"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textColor="#000000"
+        android:textSize="8pt" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp"
+        android:enabled="false"
+        android:text="Sign Up"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/Toogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextPassword"
+        android:layout_toEndOf="@+id/editTextfirstname"
+        android:text="SHOW" />
+
+    <TextView
+        android:id="@+id/Tview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editTextCPassword"
+        android:layout_toEndOf="@+id/editTextfirstname"
+        android:text="SHOW" />
+
+
+</RelativeLayout>
+
+
+
+
