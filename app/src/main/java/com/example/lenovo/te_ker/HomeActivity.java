@@ -1,6 +1,10 @@
 package com.example.lenovo.te_ker;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -56,14 +60,33 @@ public class HomeActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
+                        Fragment fragment = null;
+                        int id = menuItem.getItemId();
                         menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
+
+                        // close drawer when item is tappe
 
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
+                        if(id == R.id.nav_logout) {
+                            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        } else if(id == R.id.nav_view_attendance) {
+                            fragment = new ViewAttendanceFragment();
+                        } else if(id == R.id.nav_about_developers) {
+                            fragment = new DevelopersFragment();
+                        }
 
+                        if(fragment != null) {
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.content_frame, fragment);
+                            fragmentTransaction.commit();
+                        }
+                        mDrawerLayout.closeDrawer(GravityCompat.START);
                         return true;
+
                     }
                 });
     }

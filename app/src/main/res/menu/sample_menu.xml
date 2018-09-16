@@ -2,16 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:title="Sameple" />
+            android:id="@+id/nav_check_attendance"
+            android:title="Check Attendance" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Menu" />
+            android:id="@+id/nav_class_management"
+            android:title="Class Management" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Lang" />
+            android:id="@+id/nav_view_attendance"
+            android:title="View Attendance" />
         <item
-            android:id="@+id/nav_manage"
-            android:title="To" />
+            android:id="@+id/nav_about_developers"
+            android:title="About Developers" />
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Logout" />
     </group>
 </menu>
