@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +25,7 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     Button btnLoginSignup, btnLoginSignin;
+    TextView textViewLoginForgot;
     EditText editTextLoginUsername, editTextLoginPassword;
     String url;
     @Override
@@ -39,11 +41,23 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginSignup = findViewById(R.id.btnRegisterSignup);
         editTextLoginUsername = findViewById(R.id.editTextLoginUsername);
         editTextLoginPassword = findViewById(R.id.editTextLoginPassword);
+        textViewLoginForgot = findViewById(R.id.textViewLoginForgot);
     }
 
     private void initEvents() {
         userSignIn();
         userSignUp();
+        forgotPassword();
+    }
+
+    private void forgotPassword() {
+        textViewLoginForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, forgotpass.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void userSignUp() {
@@ -92,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String, String>  params = new HashMap<String, String>();
                         params.put("email", email);
                         params.put("password", password);
-
                         return params;
                     }
                 };

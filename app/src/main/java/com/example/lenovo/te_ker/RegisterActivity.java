@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText editTextPassword, editTextCPassword, editTextFirstName, editTextLastName, editTextEmail;
+    EditText editTextPassword, editTextCPassword, editTextFirstName, editTextLastName, editTextEmail, editTextUsername;
     Button btnRegisterSignup;
     String url;
     @Override
@@ -39,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextFirstName = findViewById(R.id.editTextFirstName);
         editTextLastName = findViewById(R.id.editTextLastName);
         editTextPassword = findViewById(R.id.editTextPassword);
+        editTextUsername = findViewById(R.id.editTextUsername);
         btnRegisterSignup = findViewById(R.id.btnRegisterSignup);
     }
 
@@ -52,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
                 final String lname = editTextLastName.getText().toString();
                 final String password = editTextPassword.getText().toString();
                 final String email = editTextEmail.getText().toString();
+                final String username = editTextUsername.getText().toString();
                 final String cpassword = editTextCPassword.getText().toString();
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
@@ -95,6 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                     {
                         Map<String, String>  params = new HashMap<String, String>();
                         params.put("name", fname + lname);
+                        params.put("username", username);
                         params.put("email", email);
                         params.put("password", password);
 

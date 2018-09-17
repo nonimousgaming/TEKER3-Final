@@ -64,15 +64,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="#000000"
         android:textSize="8pt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -124,5 +124,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCPassword"
         android:textColor="#000000"/>
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="238dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Username"
+        android:textColor="#000000"
+        android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
 </android.support.constraint.ConstraintLayout>
