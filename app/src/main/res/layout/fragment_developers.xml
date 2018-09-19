@@ -4,29 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+    <ImageView
+        android:id="@+id/imagePic3"
+        android:layout_width="148dp"
+        android:layout_height="103dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:text="About Developers"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePic2"
+        app:srcCompat="@drawable/pic1" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="132dp"
-        android:text="Ken Alvin B. Alvarez
-Mariel Angelie Perez
-Aleci ANdrei M. Marasigan"
+    <ImageView
+        android:id="@+id/imagePic1"
+        android:layout_width="148dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pic2" />
+
+    <ImageView
+        android:id="@+id/imagePic2"
+        android:layout_width="148dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagePic1"
+        app:srcCompat="@drawable/pic3" />
+
+    <ImageView
+        android:id="@+id/imagePic4"
+        android:layout_width="148dp"
+        android:layout_height="103dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagePic3"
+        app:srcCompat="@drawable/pic4" />
+
 </android.support.constraint.ConstraintLayout>

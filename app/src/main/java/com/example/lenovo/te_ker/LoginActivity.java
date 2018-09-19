@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String email = editTextLoginUsername.getText().toString();
+                final String username = editTextLoginUsername.getText().toString();
                 final String password = editTextLoginPassword.getText().toString();
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                     protected Map<String, String> getParams()
                     {
                         Map<String, String>  params = new HashMap<String, String>();
-                        params.put("email", email);
+                        params.put("username", username);
                         params.put("password", password);
                         return params;
                     }
