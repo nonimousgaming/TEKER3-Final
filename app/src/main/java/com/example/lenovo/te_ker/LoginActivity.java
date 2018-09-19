@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.lenovo.te_ker.data.AppPreference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +35,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initViews();
         initEvents();
+        initPreferences();
+    }
+
+    private void initPreferences() {
+        boolean checker = AppPreference.getLogin(this);
+        if (checker == true) {
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void initViews() {
