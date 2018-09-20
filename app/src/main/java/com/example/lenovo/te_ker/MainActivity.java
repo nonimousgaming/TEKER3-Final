@@ -18,16 +18,32 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
-                boolean checker = AppPreference.getLogin(MainActivity.this);
-                if (checker == true) {
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+                ifLoggedIn();
             }
         },SPLASH_TIME_OUT);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
+                ifLoggedIn();
+            }
+        },SPLASH_TIME_OUT);
+    }
+
+    private void ifLoggedIn() {
+        boolean isLoggedIn = AppPreference.getLogin(this);
+        if(isLoggedIn == false) {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

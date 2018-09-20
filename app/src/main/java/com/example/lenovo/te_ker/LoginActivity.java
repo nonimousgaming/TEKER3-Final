@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                             if(code.equals("200")) {
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                AppPreference.setLogin(LoginActivity.this, true);
                                 startActivity(intent);
                                 finish();
                             }
