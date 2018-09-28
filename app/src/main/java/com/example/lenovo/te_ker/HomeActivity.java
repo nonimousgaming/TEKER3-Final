@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.lenovo.te_ker.data.AppPreference;
+
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
@@ -21,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initPreferences();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -69,6 +72,7 @@ public class HomeActivity extends AppCompatActivity {
                         // Add code here to update the UI based on the item selected
                         // For example, swap UI fragments here
                         if(id == R.id.nav_logout) {
+                            AppPreference.setLogin(HomeActivity.this, false);
                             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
@@ -99,5 +103,19 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initPreferences() {
+        boolean checker = AppPreference.getLogin(this);
+        if (checker == false) {
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        initPreferences();
+        super.onResume();
     }
 }
