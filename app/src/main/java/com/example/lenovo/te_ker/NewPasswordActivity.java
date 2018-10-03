@@ -41,7 +41,7 @@ public class NewPasswordActivity extends AppCompatActivity {
     }
 
     private void initEvents() {
-        url = "https://te-ker.000webhostapp.com/api/v1/login";
+        url = "https://te-ker.000webhostapp.com/api/v1/reset-password";
         btnNewPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +58,6 @@ public class NewPasswordActivity extends AppCompatActivity {
                             Toast.makeText(NewPasswordActivity.this, message, Toast.LENGTH_LONG).show();
                             if(code.equals("200")) {
                                 Intent intent = new Intent(NewPasswordActivity.this, LoginActivity.class);
-                                AppPreference.setLogin(NewPasswordActivity.this, true);
                                 startActivity(intent);
                                 finish();
                             }

@@ -45,7 +45,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     private void sumbitFP() {
-        url = "https://te-ker.000webhostapp.com/api/v1/login";
+        url = "https://te-ker.000webhostapp.com/api/v1/check-email";
         btnFPEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +61,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                             Toast.makeText(ForgotPasswordActivity.this, message, Toast.LENGTH_LONG).show();
                             if(code.equals("200")) {
                                 Intent intent = new Intent(ForgotPasswordActivity.this, NewPasswordActivity.class);
-                                AppPreference.setLogin(ForgotPasswordActivity.this, true);
                                 startActivity(intent);
                                 finish();
                             }
