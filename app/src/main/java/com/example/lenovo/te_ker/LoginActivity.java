@@ -14,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.lenovo.te_ker.data.AppPreference;
+import com.example.lenovo.te_ker.data.HomeAsyncTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,8 +97,10 @@ public class LoginActivity extends AppCompatActivity {
                             String code = jsonObject.getString("code");
                             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                             if(code.equals("200")) {
+                                String user_id = jsonObject.getString("user_id");
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 AppPreference.setLogin(LoginActivity.this, true);
+                                AppPreference.setUserId(LoginActivity.this, user_id);
                                 startActivity(intent);
                                 finish();
                             }

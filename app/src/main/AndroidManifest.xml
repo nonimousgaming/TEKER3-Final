@@ -23,7 +23,8 @@
         <activity android:name=".DevelopersActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".NewPasswordActivity"></activity>
+        <activity android:name=".NewPasswordActivity" />
+        <activity android:name=".AddSectionActivity"></activity>
     </application>
 
 </manifest>

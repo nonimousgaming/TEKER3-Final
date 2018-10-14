@@ -1,6 +1,7 @@
 package com.example.lenovo.te_ker;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,17 +14,45 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.lenovo.te_ker.data.AppPreference;
+import com.example.lenovo.te_ker.data.HomeAsyncTask;
 
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
+    private String user_id;
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initViews();
         initPreferences();
+        initEvents();
+    }
+
+    private void initViews() {
+        fab = findViewById(R.id.fab);
+    }
+
+    private void initEvents() {
+        initNavigationDrawer();
+        fabOnClick();
+    }
+
+    private void fabOnClick() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, AddSectionActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void initNavigationDrawer() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -53,24 +82,14 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
-
-
-
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
                         Fragment fragment = null;
                         int id = menuItem.getItemId();
                         menuItem.setChecked(true);
-
-                        // close drawer when item is tappe
-
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
                         if(id == R.id.nav_logout) {
                             AppPreference.setLogin(HomeActivity.this, false);
                             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
@@ -81,7 +100,6 @@ public class HomeActivity extends AppCompatActivity {
                         } else if(id == R.id.nav_about_developers) {
                             fragment = new DevelopersFragment();
                         }
-
                         if(fragment != null) {
                             FragmentManager fragmentManager = getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -90,7 +108,6 @@ public class HomeActivity extends AppCompatActivity {
                         }
                         mDrawerLayout.closeDrawer(GravityCompat.START);
                         return true;
-
                     }
                 });
     }
@@ -110,6 +127,10 @@ public class HomeActivity extends AppCompatActivity {
         if (checker == false) {
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(intent);
+        } else {
+            user_id = AppPreference.getUserId(this);
+            HomeAsyncTask homeAsyncTask = new HomeAsyncTask(this, user_id);
+            homeAsyncTask.execute();
         }
     }
 
@@ -118,4 +139,5 @@ public class HomeActivity extends AppCompatActivity {
         initPreferences();
         super.onResume();
     }
+
 }
