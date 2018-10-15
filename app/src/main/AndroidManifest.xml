@@ -24,7 +24,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".NewPasswordActivity" />
-        <activity android:name=".AddSectionActivity"></activity>
+        <activity android:name=".AddSectionActivity" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>
