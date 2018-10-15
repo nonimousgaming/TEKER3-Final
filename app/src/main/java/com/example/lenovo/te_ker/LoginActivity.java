@@ -25,8 +25,8 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button btnLoginSignup, btnLoginSignin;
-    TextView textViewLoginForgot;
+    Button btnLoginSignin;
+    TextView textViewLoginForgot, btnLoginSignup;
     EditText editTextLoginUsername, editTextLoginPassword;
     String url;
     @Override
