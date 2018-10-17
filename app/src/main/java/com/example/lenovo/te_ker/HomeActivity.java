@@ -183,9 +183,13 @@ public class HomeActivity extends AppCompatActivity {
                         } else if(id == R.id.nav_view_attendance) {
                             fragment = new ViewAttendanceFragment();
                             mList.setVisibility(View.GONE);
+                            fab.hide();
                         } else if(id == R.id.nav_about_developers) {
                             fragment = new DevelopersFragment();
                             mList.setVisibility(View.GONE);
+                            fab.hide();
+                        } else {
+                            fab.show();
                         }
                         if(fragment != null) {
                             FragmentManager fragmentManager = getSupportFragmentManager();
