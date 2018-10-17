@@ -188,7 +188,10 @@ public class HomeActivity extends AppCompatActivity {
                             fragment = new DevelopersFragment();
                             mList.setVisibility(View.GONE);
                             fab.hide();
-                        } else {
+                        } else if (id == R.id.nav_class_management) {
+                            finish();
+                            startActivity(getIntent());
+                        } else{
                             fab.show();
                         }
                         if(fragment != null) {
