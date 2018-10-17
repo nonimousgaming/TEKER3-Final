@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logofinal" />
+        app:srcCompat="@drawable/LogoTunay" />
 
 
     <EditText
@@ -82,12 +82,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textColor="#000000"
         android:textSize="8pt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
 
@@ -105,25 +107,27 @@
         android:textColor="#000000"
         android:textSize="8pt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/btnRegisterSignup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="31dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
         android:text="Sign Up"
+        android:textColor="#000000"
         android:textSize="10pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCPassword"
-        android:textColor="#000000"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextCPassword" />
 
     <EditText
         android:id="@+id/editTextUsername"
@@ -131,11 +135,24 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="Username"
         android:textColor="#000000"
         android:textSize="8pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRATION"
+        android:typeface="serif"
+        android:textColor="#FFFFFF"
+        android:textSize="10pt"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

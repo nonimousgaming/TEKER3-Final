@@ -22,10 +22,8 @@
         android:id="@+id/imageLogo"
         android:layout_width="175dp"
         android:layout_height="222dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="139dp"
-        app:srcCompat="@drawable/logofinal"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/LogoTunay"
         tools:layout_editor_absoluteX="41dp"
         tools:layout_editor_absoluteY="123dp" />
 </RelativeLayout>
