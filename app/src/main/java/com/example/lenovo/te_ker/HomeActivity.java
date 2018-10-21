@@ -18,6 +18,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private String user_id, url;
     FloatingActionButton fab;
+    LinearLayout linearLayout;
 
     private RecyclerView mList;
 
@@ -55,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        linearLayout = findViewById(R.id.main_layout);
         mList = findViewById(R.id.main_list);
         mList.setVisibility(View.VISIBLE);
         movieList = new ArrayList<>();
@@ -183,16 +186,19 @@ public class HomeActivity extends AppCompatActivity {
                         } else if(id == R.id.nav_view_attendance) {
                             fragment = new ViewAttendanceFragment();
                             mList.setVisibility(View.GONE);
+                            linearLayout.setBackgroundResource(R.drawable.received_461455371023210);
                             fab.hide();
                         } else if(id == R.id.nav_about_developers) {
                             fragment = new DevelopersFragment();
                             mList.setVisibility(View.GONE);
+                            linearLayout.setBackgroundResource(R.drawable.received_461455371023210);
                             fab.hide();
                         } else if (id == R.id.nav_class_management) {
                             finish();
                             startActivity(getIntent());
                         } else{
                             fab.show();
+                            linearLayout.setBackgroundResource(0);
                         }
                         if(fragment != null) {
                             FragmentManager fragmentManager = getSupportFragmentManager();

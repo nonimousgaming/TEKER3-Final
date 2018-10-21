@@ -11,10 +11,10 @@
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
     <LinearLayout
+            android:id="@+id/main_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@drawable/received_461455371023210">
+            android:orientation="vertical">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
