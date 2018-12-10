@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     private String user_id, url;
     FloatingActionButton fab;
     LinearLayout linearLayout;
+    TextView textViewNoSections;
 
     private RecyclerView mList;
 
@@ -73,10 +75,21 @@ public class HomeActivity extends AppCompatActivity {
         mList.setAdapter(adapter);
 
         getData();
-
+        changeNavHeader();
         initViews();
         initPreferences();
         initEvents();
+    }
+
+    private void changeNavHeader() {
+        String name = AppPreference.getName(this);
+        String email = AppPreference.getEmail(this);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navName = headerView.findViewById(R.id.nav_name);
+        TextView navEmail = headerView.findViewById(R.id.nav_email);
+        navName.setText(name);
+        navEmail.setText(email);
     }
 
     private void getData() {
@@ -89,15 +102,22 @@ public class HomeActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
-                    for (int i = 0; i < response.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        Section movie = new Section();
-                        movie.setName(jsonObject.getString("name"));
-                        movie.setSubject(jsonObject.getString("subject"));
-                        movie.setStart_time(jsonObject.getString("start_time"));
-                        movie.setEnd_time(jsonObject.getString("end_time"));
-                        movie.setRoom(jsonObject.getString("room"));
-                        movieList.add(movie);
+                    if(response.contentEquals("[]")) {
+                        textViewNoSections.setVisibility(View.VISIBLE);
+                        Toast.makeText(HomeActivity.this, "No sections uploaded yet", Toast.LENGTH_LONG).show();
+                    } else {
+                        for (int i = 0; i < response.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            Section section = new Section();
+                            section.setID(jsonObject.getString("id"));
+                            section.setName(jsonObject.getString("name"));
+                            section.setSubject(jsonObject.getString("subject"));
+                            section.setStart_time(jsonObject.getString("start_time"));
+                            section.setEnd_time(jsonObject.getString("end_time"));
+                            section.setRoom(jsonObject.getString("room"));
+                            section.setStatus(jsonObject.getString("status"));
+                            movieList.add(section);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -122,6 +142,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        textViewNoSections = findViewById(R.id.textViewNoSections);
         fab = findViewById(R.id.fab);
     }
 
@@ -183,15 +204,10 @@ public class HomeActivity extends AppCompatActivity {
                             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                             startActivity(intent);
                             finish();
-                        } else if(id == R.id.nav_view_attendance) {
-                            fragment = new ViewAttendanceFragment();
-                            mList.setVisibility(View.GONE);
-                            linearLayout.setBackgroundResource(R.drawable.received_461455371023210);
-                            fab.hide();
-                        } else if(id == R.id.nav_about_developers) {
+                        }else if(id == R.id.nav_about_developers) {
                             fragment = new DevelopersFragment();
                             mList.setVisibility(View.GONE);
-                            linearLayout.setBackgroundResource(R.drawable.received_461455371023210);
+                            linearLayout.setBackgroundResource(0);
                             fab.hide();
                         } else if (id == R.id.nav_class_management) {
                             finish();

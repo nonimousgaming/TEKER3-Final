@@ -98,9 +98,13 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
                             if(code.equals("200")) {
                                 String user_id = jsonObject.getString("user_id");
+                                String name = jsonObject.getString("name");
+                                String email = jsonObject.getString("email");
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 AppPreference.setLogin(LoginActivity.this, true);
                                 AppPreference.setUserId(LoginActivity.this, user_id);
+                                AppPreference.setEmail(LoginActivity.this, email);
+                                AppPreference.setName(LoginActivity.this, name);
                                 startActivity(intent);
                                 finish();
                             }

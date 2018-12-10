@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                     protected Map<String, String> getParams()
                     {
                         Map<String, String>  params = new HashMap<String, String>();
-                        params.put("name", fname + lname);
+                        params.put("name", fname + " " + lname);
                         params.put("username", username);
                         params.put("email", email);
                         params.put("password", password);

@@ -15,6 +15,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSectionSubject"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,9 +25,11 @@
         android:id="@+id/textViewSectionSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSectionStartTime"
         app:layout_constraintStart_toEndOf="@+id/textViewSectionName"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,9 +37,11 @@
         android:id="@+id/textViewSectionStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSectionEndTime"
         app:layout_constraintStart_toEndOf="@+id/textViewSectionSubject"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,9 +49,11 @@
         android:id="@+id/textViewSectionEndTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSectionRoom"
         app:layout_constraintStart_toEndOf="@+id/textViewSectionStartTime"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,10 +61,11 @@
         android:id="@+id/textViewSectionRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="TextView"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textViewSectionEndTime"
         app:layout_constraintTop_toTopOf="parent" />

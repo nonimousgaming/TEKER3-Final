@@ -8,6 +8,8 @@ public class AppPreference {
     public static final String PREF_USER_LOGIN = "isLoggedIn";
 
     public static final String PREF_USER_ID = "ID";
+    public static final String PREF_EMAIL = "EMAIL";
+    public static final String PREF_NAME = "NAME";
 
     public static boolean getLogin(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -36,4 +38,34 @@ public class AppPreference {
         editor.putString(PREF_USER_ID, user_id);
         editor.apply();
     }
+
+    public static String getEmail(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String Email = sp.getString(PREF_EMAIL, "");
+
+        return Email;
+    }
+
+    public static void setEmail(Context context, String email) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(PREF_EMAIL, email);
+        editor.apply();
+    }
+
+    public static String getName(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String Name = sp.getString(PREF_NAME, "");
+
+        return Name;
+    }
+
+    public static void setName(Context context, String name) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(PREF_NAME, name);
+        editor.apply();
+    }
+
+
 }
