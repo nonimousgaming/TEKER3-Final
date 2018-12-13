@@ -61,7 +61,7 @@ public class AttendanceAdapater extends RecyclerView.Adapter<AttendanceAdapater.
                     Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
                     smsIntent.setType("vnd.android-dir/mms-sms");
                     smsIntent.putExtra("address",phone);
-                    smsIntent.putExtra("sms_body","message");
+                    smsIntent.putExtra("sms_body","You are marked as absent today. Please report to me tomorrow");
                     context.startActivity(smsIntent);
                 }
             });
