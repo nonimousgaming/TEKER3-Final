@@ -69,8 +69,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
             int adapterPosition = getAdapterPosition();
             Section section = list.get(adapterPosition);
             String section_id = section.getID();
+            String section_name = section.getName();
             Intent intent = new Intent(context, StudentsActivity.class);
-            intent.putExtra("section_id", section_id);
+            AppPreference.setPrefSectionId(context, section_id);
+            AppPreference.setPrefSectionName(context, section_name);
             context.startActivity(intent);
         }
 

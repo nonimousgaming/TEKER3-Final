@@ -42,7 +42,7 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
-    private String user_id, url;
+    String user_id, url;
     FloatingActionButton fab;
     LinearLayout linearLayout;
     TextView textViewNoSections;
@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         mList.setVisibility(View.VISIBLE);
         movieList = new ArrayList<>();
         adapter = new SectionAdapter(getApplicationContext(),movieList);
-
+        mList.setAdapter(adapter);
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
@@ -72,12 +72,11 @@ public class HomeActivity extends AppCompatActivity {
         mList.setHasFixedSize(true);
         mList.setLayoutManager(linearLayoutManager);
         mList.addItemDecoration(dividerItemDecoration);
-        mList.setAdapter(adapter);
 
+        initPreferences();
         getData();
         changeNavHeader();
         initViews();
-        initPreferences();
         initEvents();
     }
 
@@ -128,7 +127,8 @@ public class HomeActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(HomeActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
             }
         }){
             protected Map<String, String> getParams()
@@ -157,6 +157,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, AddSectionActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -210,8 +211,8 @@ public class HomeActivity extends AppCompatActivity {
                             linearLayout.setBackgroundResource(0);
                             fab.hide();
                         } else if (id == R.id.nav_class_management) {
-                            finish();
                             startActivity(getIntent());
+                            finish();
                         } else{
                             fab.show();
                             linearLayout.setBackgroundResource(0);
@@ -243,6 +244,7 @@ public class HomeActivity extends AppCompatActivity {
         if (checker == false) {
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(intent);
+            finish();
         } else {
             user_id = AppPreference.getUserId(this);
         }
@@ -254,4 +256,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    protected void onRestart() {
+        initPreferences();
+        super.onRestart();
+    }
 }

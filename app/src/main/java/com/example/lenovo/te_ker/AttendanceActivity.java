@@ -94,7 +94,8 @@ public class AttendanceActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(AttendanceActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
             }
         }){
             protected Map<String, String> getParams()

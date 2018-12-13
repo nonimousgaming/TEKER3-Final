@@ -3,6 +3,7 @@ package com.example.lenovo.te_ker.data;
 public class Student {
 
     public String id;
+    public String person_id;
     public String name;
     public String email;
     public String parent_name;
@@ -11,11 +12,20 @@ public class Student {
 
     public Student() {
         this.id = id;
+        this.person_id = person_id;
         this.name = name;
         this.email = email;
         this.parent_name = parent_name;
         this.parent_number = parent_number;
         this.status = status;
+    }
+
+    public String getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(String person_id) {
+        this.person_id = person_id;
     }
 
     public String getID() {

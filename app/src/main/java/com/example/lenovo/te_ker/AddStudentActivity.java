@@ -25,7 +25,7 @@ public class AddStudentActivity extends AppCompatActivity {
 
     EditText editTextStudentName, editTextStudentEmail, editTextParentName, editTextParentNumber;
     Button btnAddStudent, btnImport;
-    String url, section_id;
+    String url, section_id, section_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class AddStudentActivity extends AppCompatActivity {
     private void initExtras() {
         Intent intent = getIntent();
         section_id = intent.getStringExtra("section_id");
+        section_name = AppPreference.getPrefSectionName(this);
     }
 
     private void initEvents() {
@@ -71,13 +72,14 @@ public class AddStudentActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(AddStudentActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
                     protected Map<String, String> getParams()
                     {
                         Map<String, String>  params = new HashMap<String, String>();
                         params.put("section_id", section_id);
+                        params.put("section_name", section_name);
                         params.put("name", name);
                         params.put("email", email);
                         params.put("parent_name", parent_name);

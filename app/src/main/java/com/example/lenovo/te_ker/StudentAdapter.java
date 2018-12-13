@@ -53,8 +53,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
 
         @Override
         public void onClick(View v) {
-
-
+            Context context = v.getContext();
+            int adapterPosition = getAdapterPosition();
+            Student student = list.get(adapterPosition);
+            String person_id = student.getPerson_id();
+            String name = student.getName();
+            Intent intent = new Intent(context, StudentImageActivity.class);
+            intent.putExtra("person_id", person_id);
+            intent.putExtra("name", name);
+            context.startActivity(intent);
         }
 
         @Override

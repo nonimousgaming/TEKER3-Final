@@ -65,7 +65,7 @@ public class AddSectionActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(AddSectionActivity.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
                     protected Map<String, String> getParams()

@@ -24,6 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.lenovo.te_ker.data.AppPreference;
 import com.example.lenovo.te_ker.data.Student;
 
 
@@ -48,7 +49,7 @@ public class StudentsActivity extends AppCompatActivity {
     private List<Student> movieList;
     private RecyclerView.Adapter adapter;
     private Button btnViewAttendance, btnCheck;
-    String section_id;
+    String section_id, section_name;
     FloatingActionButton fab1;
     TextView textViewNoStudent;
 
@@ -64,15 +65,15 @@ public class StudentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_students);
         initViews();
         initEvents();
-        Intent intent = getIntent();
-        section_id = intent.getStringExtra("section_id");
+        section_id = AppPreference.getPrefSectionId(this);
+        section_name = AppPreference.getPrefSectionName(this);
         textViewNoStudent = findViewById(R.id.textViewNoStudent);
 
         mList = findViewById(R.id.student_list);
         mList.setVisibility(View.VISIBLE);
         movieList = new ArrayList<>();
         adapter = new StudentAdapter(getApplicationContext(),movieList);
-
+        mList.setAdapter(adapter);
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
@@ -80,7 +81,7 @@ public class StudentsActivity extends AppCompatActivity {
         mList.setHasFixedSize(true);
         mList.setLayoutManager(linearLayoutManager);
         mList.addItemDecoration(dividerItemDecoration);
-        mList.setAdapter(adapter);
+
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
@@ -99,6 +100,7 @@ public class StudentsActivity extends AppCompatActivity {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
                             Student student = new Student();
                             student.setID(jsonObject.getString("id"));
+                            student.setPerson_id(jsonObject.getString("person_id"));
                             student.setName(jsonObject.getString("name"));
                             student.setEmail(jsonObject.getString("email"));
                             student.setParent_name(jsonObject.getString("parent_name"));
@@ -116,13 +118,15 @@ public class StudentsActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(StudentsActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
             }
         }){
             protected Map<String, String> getParams()
             {
                 Map<String, String>  params = new HashMap<String, String>();
                 params.put("section_id", section_id);
+                params.put("section_name", section_name);
                 return params;
             }
         };
@@ -145,6 +149,7 @@ public class StudentsActivity extends AppCompatActivity {
                 Intent intent = new Intent(StudentsActivity.this, AddStudentActivity.class);
                 intent.putExtra("section_id", section_id);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -177,8 +182,9 @@ public class StudentsActivity extends AppCompatActivity {
         if(requestCode == CAMERA_REQUEST || requestCode ==  REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null) {
             Bundle extras = data.getExtras();
             final Bitmap imageBitmap = (Bitmap) extras.get("data");
-
-
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.show();
             String url = "https://te-ker.000webhostapp.com/api/v1/check-attendance";
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
@@ -189,11 +195,13 @@ public class StudentsActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    progressDialog.hide();
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Toast.makeText(StudentsActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    progressDialog.dismiss();
                 }
             }){
                 protected Map<String, String> getParams()
@@ -201,6 +209,7 @@ public class StudentsActivity extends AppCompatActivity {
                     Map<String, String>  params = new HashMap<String, String>();
                     params.put("image", imageToString(imageBitmap));
                     params.put("section_id", section_id);
+                    params.put("section_name", section_name);
                     return params;
                 }
             };

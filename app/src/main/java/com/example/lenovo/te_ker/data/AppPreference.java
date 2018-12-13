@@ -10,6 +10,8 @@ public class AppPreference {
     public static final String PREF_USER_ID = "ID";
     public static final String PREF_EMAIL = "EMAIL";
     public static final String PREF_NAME = "NAME";
+    public static final String PREF_SECTION_ID = "ID";
+    public static final String PREF_SECTION_NAME = "NAME";
 
     public static boolean getLogin(Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
@@ -64,6 +66,34 @@ public class AppPreference {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(PREF_NAME, name);
+        editor.apply();
+    }
+
+    public static String getPrefSectionId(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String ID = sp.getString(PREF_SECTION_ID, "");
+
+        return ID;
+    }
+
+    public static void setPrefSectionId(Context context, String section_id) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(PREF_SECTION_ID, section_id);
+        editor.apply();
+    }
+
+    public static String getPrefSectionName(Context context) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        String ID = sp.getString(PREF_SECTION_NAME, "");
+
+        return ID;
+    }
+
+    public static void setPrefSectionName(Context context, String section_name) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(PREF_SECTION_NAME, section_name);
         editor.apply();
     }
 
