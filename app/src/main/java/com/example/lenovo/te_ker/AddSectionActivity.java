@@ -1,5 +1,6 @@
 package com.example.lenovo.te_ker;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class AddSectionActivity extends AppCompatActivity {
     }
 
     private void initEvents() {
+
         url = "https://te-ker.000webhostapp.com/api/v1/create-section";
         btnAddSection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +46,7 @@ public class AddSectionActivity extends AppCompatActivity {
                 final String start_time = editTextStartTime.getText().toString();
                 final String end_time = editTextEndTime.getText().toString();
                 final String room = editTextRoomName.getText().toString();
+
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -61,6 +64,7 @@ public class AddSectionActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }, new Response.ErrorListener() {
                     @Override

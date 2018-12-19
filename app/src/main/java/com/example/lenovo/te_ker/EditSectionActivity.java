@@ -1,5 +1,6 @@
 package com.example.lenovo.te_ker;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class EditSectionActivity extends AppCompatActivity {
                 } else {
                     status1 = "0";
                 }
+
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

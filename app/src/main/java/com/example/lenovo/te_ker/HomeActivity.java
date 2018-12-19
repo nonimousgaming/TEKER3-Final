@@ -58,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initPreferences();
 
         linearLayout = findViewById(R.id.main_layout);
         mList = findViewById(R.id.main_list);
@@ -73,7 +74,6 @@ public class HomeActivity extends AppCompatActivity {
         mList.setLayoutManager(linearLayoutManager);
         mList.addItemDecoration(dividerItemDecoration);
 
-        initPreferences();
         getData();
         changeNavHeader();
         initViews();
@@ -157,7 +157,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, AddSectionActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

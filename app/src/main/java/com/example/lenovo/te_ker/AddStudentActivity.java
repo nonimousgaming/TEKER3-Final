@@ -1,5 +1,6 @@
 package com.example.lenovo.te_ker;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class AddStudentActivity extends AppCompatActivity {
     }
 
     private void initEvents() {
+
         url = "https://te-ker.000webhostapp.com/api/v1/create-student";
         btnAddStudent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,7 @@ public class AddStudentActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }, new Response.ErrorListener() {
                     @Override

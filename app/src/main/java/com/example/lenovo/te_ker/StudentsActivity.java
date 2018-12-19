@@ -149,7 +149,6 @@ public class StudentsActivity extends AppCompatActivity {
                 Intent intent = new Intent(StudentsActivity.this, AddStudentActivity.class);
                 intent.putExtra("section_id", section_id);
                 startActivity(intent);
-                finish();
             }
         });
 
