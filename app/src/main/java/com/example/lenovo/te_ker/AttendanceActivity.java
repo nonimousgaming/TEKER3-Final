@@ -2,6 +2,7 @@ package com.example.lenovo.te_ker;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -39,6 +40,7 @@ public class AttendanceActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     String section_id;
     TextView textViewNoAttendance;
+    Button btnPDF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class AttendanceActivity extends AppCompatActivity {
         Intent intent = getIntent();
         section_id = intent.getStringExtra("section_id");
         textViewNoAttendance = findViewById(R.id.textViewNoAttendance);
+        btnPDF = findViewById(R.id.btnPDF);
         mList = findViewById(R.id.attendance_list);
         mList.setVisibility(View.VISIBLE);
         movieList = new ArrayList<>();
@@ -106,6 +109,41 @@ public class AttendanceActivity extends AppCompatActivity {
             }
         };
         MySingleton.getInstance(AttendanceActivity.this).addToRequestQueue(stringRequest);
+
+        btnPDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://te-ker.000webhostapp.com/api/v1/export-pdf";
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            String url = jsonObject.getString("url");
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(url));
+                            startActivity(i);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AttendanceActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String>  params = new HashMap<String, String>();
+                        params.put("section_id", section_id);
+                        return params;
+                    }
+                };
+                MySingleton.getInstance(AttendanceActivity.this).addToRequestQueue(stringRequest);
+            }
+        });
     }
 
 
